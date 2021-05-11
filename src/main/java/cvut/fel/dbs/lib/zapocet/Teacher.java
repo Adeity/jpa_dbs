@@ -4,7 +4,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "teacher")
-@DiscriminatorValue("23")
+@DiscriminatorValue("1")
 public class Teacher extends Person {
 
     public Teacher() {
@@ -17,10 +17,10 @@ public class Teacher extends Person {
 
     public static List<Teacher> getListOfTeachers(App app) {
         TypedQuery<Teacher> q2 = app.em.createQuery(
-                "SELECT t FROM Teacher t",
+                "SELECT t FROM Teacher t WHERE t.person_type_id = 1",
                 Teacher.class
         );
-        System.out.println(app.em.createQuery("SELECT t FROM Teacher t"));
+//        System.out.println(app.em.createQuery("SELECT t FROM Teacher t WHERE t.person_type_id = 1"));
         return q2.getResultList();
     }
 //    @Override
