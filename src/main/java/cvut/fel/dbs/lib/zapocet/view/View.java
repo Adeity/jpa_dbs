@@ -1,6 +1,7 @@
 package cvut.fel.dbs.lib.zapocet.view;
 
 import cvut.fel.dbs.lib.zapocet.App;
+import cvut.fel.dbs.lib.zapocet.Teacher;
 
 import javax.swing.*;
 import java.util.Objects;
@@ -29,8 +30,13 @@ public class View {
             });
         }
         else {
+            jFrameInit.setVisible(true);
             jFrameInit.repaint();
         }
+    }
+
+    public void refreshTeacherList() {
+        jFrameTeacherList.refreshPanel();
     }
 
     public void openJFrameTeacherList() {
@@ -46,7 +52,43 @@ public class View {
             });
         }
         else {
+            jFrameTeacherList.setVisible(true);
             jFrameTeacherList.repaint();
+        }
+    }
+
+    public void openJFrameCreateTeacher() {
+        if (jFrameCreateTeacher == null) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    jFrameCreateTeacher = new JFrameCreateTeacher(app);
+                    jFrameCreateTeacher.init();
+                    jFrameCreateTeacher.setVisible(true);
+                }
+            });
+        }
+        else {
+            jFrameCreateTeacher.setVisible(true);
+            jFrameCreateTeacher.repaint();
+        }
+    }
+
+    public void openJFrameUpdateTeacher(Teacher t, App app) {
+        if (jFrameUpdateTeacher == null) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    jFrameUpdateTeacher = new JFrameUpdateTeacher(t, app);
+                    jFrameUpdateTeacher.init();
+                    jFrameUpdateTeacher.setVisible(true);
+                }
+            });
+        }
+        else {
+            jFrameUpdateTeacher.setVisible(true);
+            jFrameUpdateTeacher.setCurrentTeacher(t);
+            jFrameUpdateTeacher.repaint();
         }
     }
 }

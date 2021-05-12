@@ -13,6 +13,8 @@ public class Person {
     @GeneratedValue
     public Integer idperson;
 
+    private String pid;
+
     private String name;
 
     private String surname;
@@ -23,19 +25,29 @@ public class Person {
 
     private String city;
 
-    private int zipcode;
+    private Integer zipcode;
 //
     private int person_type_id;
 
 
+    public Person(String pid, String name, String surname, String phoneNumber, String street, String city, Integer zipcode, int person_type_id) {
+        this.pid = pid;
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+        this.street = street;
+        this.city = city;
+        this.zipcode = zipcode;
+        this.person_type_id = 1;
+    }
+
+    public Person() {
+
+    }
+
     public Integer getIdperson() {
         return idperson;
     }
-
-    public void setIdperson(Integer idperson) {
-        this.idperson = idperson;
-    }
-
 
     public String getName() {
         return name;
@@ -49,39 +61,48 @@ public class Person {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+
+    public String getStreet() {
+        return street;
+    }
+
+
+    public String getCity() {
+        return city;
+    }
+
+
+    public Integer getZipcode() {
+        return zipcode;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
     public void setStreet(String street) {
         this.street = street;
-    }
-
-    public String getCity() {
-        return city;
     }
 
     public void setCity(String city) {
         this.city = city;
     }
 
-    public int getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(int zipcode) {
+    public void setZipcode(Integer zipcode) {
         this.zipcode = zipcode;
     }
+
+    public String getPid() {
+        return pid;
+    }
+
 }

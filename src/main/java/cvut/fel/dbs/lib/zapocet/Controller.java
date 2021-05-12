@@ -1,10 +1,5 @@
 package cvut.fel.dbs.lib.zapocet;
 
-import cvut.fel.dbs.lib.Book;
-
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -14,27 +9,72 @@ public class Controller {
         this.app = app;
     }
 
-    public void putNewTeacherToDB(String name) {
+    public void deleteTeacherById(int id) {
         app.et.begin();
-//        Teacher t1 = Teacher.getNewTeacherInstance(name);
-//        t1.setName(name);
-//        app.em.persist(t1);
+        app.em.createQuery("DELETE FROM Teacher WHERE idperson = " + id).executeUpdate();
         app.et.commit();
-    }
-
-
-
-    private void deleteTeacherById(int id) {
-        app.em.createQuery("DELETE FROM teacher WHERE idteacher = " + id).executeUpdate();
     }
 
     public List<Teacher> getListOfTeachers() {
         return Teacher.getListOfTeachers(app);
     }
 
+    public boolean createNewTeacher(String pid, String name, String surname, String phonenumber, String street, String city, String zipcode) {
+        if(!phoneAndZipAreValid(phonenumber, zipcode)) {
+            return false;
+        }
+        if (pid.length() != 10) {
+            return false;
+        }
+        if (name.length() == 0 || pid.length() == 0 || surname.length() == 0) {
+            return false;
+        }
+        if (Teacher.getTeacherByPid(pid, app).size() != 0) {
+            System.out.println("Someone with this pid is already in DB");
+            return false;
+        }
+        Teacher t = Teacher.getNewTeacherInstance(pid, name, surname, phonenumber, street, city, zipcode);
+        app.et.begin();
+        app.em.persist(t);
+        app.et.commit();
+        return true;
+    }
 
+    private boolean phoneAndZipAreValid(String phonenumber, String zipcode) {
+        if (phonenumber.length() != 0) {
+            if (phonenumber.length() != 9) {
+                System.out.println("Wrong phonenumber length. Current phonenumber len is: " + phonenumber.length());
+                return false;
+            }
+        }
+        if (zipcode.length() != 0) {
+            if (zipcode.length() != 5) {
+                System.out.println("Wrong zipcode length. Current zipcode len is: " + zipcode.length());
+                return false;
+            }
+        }
+        return true;
+    }
 
-    public void updateTeacher() {
+    public boolean updateTeacher(Teacher t, String pid, String name, String surname, String phonenumber, String street, String city, String zipcode) {
+        if(!phoneAndZipAreValid(phonenumber, zipcode)) {
+            return false;
+        }
+        t.setName(name);
+        t.setSurname(surname);
+        t.setPhoneNumber(phonenumber);
+        t.setStreet(street);
+        t.setCity(city);
 
+        if (zipcode.equals("")) {
+            t.setZipcode(null);
+        } else {
+            t.setZipcode(Integer.parseInt(zipcode));
+        }
+
+        app.et.begin();
+        app.em.merge(t);
+        app.et.commit();
+        return true;
     }
 }
