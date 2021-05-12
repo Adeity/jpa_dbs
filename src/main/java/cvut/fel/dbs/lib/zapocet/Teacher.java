@@ -23,6 +23,14 @@ public class Teacher extends Person {
             inverseJoinColumns = @JoinColumn(name = "idsubject"))
     private Collection<Subject> taughtSubjects;
 
+    public Collection<Subject> getTaughtSubjects() {
+        return taughtSubjects;
+    }
+
+    public void setTaughtSubjects(Collection<Subject> taughtSubjects) {
+        this.taughtSubjects = taughtSubjects;
+    }
+
     protected static Teacher getNewTeacherInstance(String pid, String name, String surname, String phonenumber, String street, String city, String zipcode) {
         Integer zipcode1 = null;
         if (zipcode.length() != 0) {
@@ -56,6 +64,8 @@ public class Teacher extends Person {
         );
         return q2.getResultList();
     }
+
+
 //    @Override
 //    public String toString() {
 //        return "Teacher{" +

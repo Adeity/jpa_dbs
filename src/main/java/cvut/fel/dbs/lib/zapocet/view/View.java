@@ -4,7 +4,6 @@ import cvut.fel.dbs.lib.zapocet.App;
 import cvut.fel.dbs.lib.zapocet.Teacher;
 
 import javax.swing.*;
-import java.util.Objects;
 
 public class View {
     App app;
@@ -13,6 +12,8 @@ public class View {
     JFrameInit jFrameInit;
     JFrameUpdateTeacher jFrameUpdateTeacher;
     JFrameTeacherList jFrameTeacherList;
+    JFrameRelationshipList jFrameRelationshipList;
+    JFrameSubjectList jFrameSubjectList;
 
     public void setApp(App app) {
         this.app = app;
@@ -37,6 +38,10 @@ public class View {
 
     public void refreshTeacherList() {
         jFrameTeacherList.refreshPanel();
+    }
+
+    public void refreshRelationshipList() {
+        jFrameRelationshipList.refreshPanel();
     }
 
     public void openJFrameTeacherList() {
@@ -89,6 +94,42 @@ public class View {
             jFrameUpdateTeacher.setVisible(true);
             jFrameUpdateTeacher.setCurrentTeacher(t);
             jFrameUpdateTeacher.repaint();
+        }
+    }
+
+    public void openJFrameRelationshipList() {
+        if (jFrameRelationshipList == null) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    jFrameRelationshipList = new JFrameRelationshipList(app);
+                    jFrameRelationshipList.init();
+                    jFrameRelationshipList.listRelationships();
+                    jFrameRelationshipList.setVisible(true);
+                }
+            });
+        }
+        else {
+            jFrameRelationshipList.setVisible(true);
+            jFrameRelationshipList.repaint();
+        }
+    }
+
+    public void openJFrameSubjectList() {
+        if (jFrameSubjectList == null) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    jFrameSubjectList = new JFrameSubjectList(app);
+                    jFrameSubjectList.init();
+                    jFrameSubjectList.listSubjects();
+                    jFrameSubjectList.setVisible(true);
+                }
+            });
+        }
+        else {
+            jFrameSubjectList.setVisible(true);
+            jFrameSubjectList.repaint();
         }
     }
 }

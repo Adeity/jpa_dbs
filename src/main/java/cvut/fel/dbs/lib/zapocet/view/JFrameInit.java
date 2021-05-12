@@ -51,6 +51,8 @@ public class JFrameInit extends JFrame implements ActionListener {
                 app.getView().openJFrameTeacherList();
                 break;
             case "Relationship":
+                app.getView().openJFrameRelationshipList();
+                app.getView().openJFrameSubjectList();
                 break;
         }
     }

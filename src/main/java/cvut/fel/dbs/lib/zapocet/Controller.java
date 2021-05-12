@@ -19,6 +19,21 @@ public class Controller {
         return Teacher.getListOfTeachers(app);
     }
 
+    public List<Subject> getListOfSubjects() {
+        return Subject.getListOfSubjects(app);
+    }
+
+
+    public List<Subject> getListOfTaughtSubjectsByTeacher(String idperson) {
+        Teacher teacher = Teacher.getTeacherById(idperson, app);
+
+        for (Subject taughtSubject : teacher.getTaughtSubjects()) {
+            System.out.println(taughtSubject);
+        }
+
+        return null;
+    }
+
     public boolean createNewTeacher(String pid, String name, String surname, String phonenumber, String street, String city, String zipcode) {
         if(!phoneAndZipAreValid(phonenumber, zipcode)) {
             return false;
@@ -76,5 +91,17 @@ public class Controller {
         app.em.merge(t);
         app.et.commit();
         return true;
+    }
+
+    public void deleteTeachersTaugthSubject(int teacherId, int subjectId) {
+        Teacher t = app.em.find(Teacher.class, teacherId);
+        System.out.println(t);
+        Subject s = app.em.find(Subject.class, subjectId);
+        System.out.println(s);
+
+        t.getTaughtSubjects().remove(s);
+        app.et.begin();
+        app.em.merge(t);
+        app.et.commit();
     }
 }

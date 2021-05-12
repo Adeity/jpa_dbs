@@ -8,5 +8,6 @@ public class Main {
 
         app.view.openJFrameInit();
 
+//        app.controller.getListOfTaughtSubjectsByTeacher("1");
     }
 }
