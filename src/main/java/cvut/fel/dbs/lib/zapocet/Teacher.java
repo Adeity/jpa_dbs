@@ -1,5 +1,6 @@
 package cvut.fel.dbs.lib.zapocet;
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -14,6 +15,13 @@ public class Teacher extends Person {
     public Teacher() {
 
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "teachessubject",
+            joinColumns = @JoinColumn(name = "idperson"),
+            inverseJoinColumns = @JoinColumn(name = "idsubject"))
+    private Collection<Subject> taughtSubjects;
 
     protected static Teacher getNewTeacherInstance(String pid, String name, String surname, String phonenumber, String street, String city, String zipcode) {
         Integer zipcode1 = null;
