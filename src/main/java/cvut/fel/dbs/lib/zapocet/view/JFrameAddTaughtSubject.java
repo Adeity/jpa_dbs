@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This is a windows where a code of subject can be added to teacher. It will create a new relationship between teacher and subject.
+ */
 public class JFrameAddTaughtSubject extends JFrame implements ActionListener {
     App app;
 

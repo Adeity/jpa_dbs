@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Subjects are taugth by teachers.
+ */
 @Entity
 @Table(name = "subject")
 public class Subject {
@@ -43,6 +46,10 @@ public class Subject {
         return recommendedsemester;
     }
 
+    /**
+     * This finds and return list of all subjects in db
+     * @return list of all subjects in DB
+     */
     public static List<Subject> getListOfSubjects(App app) {
         TypedQuery<Subject> q2 = app.em.createQuery(
                 "SELECT s FROM Subject s",
@@ -51,6 +58,11 @@ public class Subject {
         return q2.getResultList();
     }
 
+    /**
+     * This finds single subject by its identifying code
+     * @param code of subject
+     * @return single subject with code
+     */
     public static Subject getSubjectByCode(App app, String code) {
         TypedQuery<Subject> q2 = app.em.createQuery(
                 "SELECT s FROM Subject s WHERE s.code = '" + code+"'",

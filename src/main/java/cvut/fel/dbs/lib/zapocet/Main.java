@@ -1,5 +1,8 @@
 package cvut.fel.dbs.lib.zapocet;
 
+/**
+ * Run this to run the application.
+ */
 public class Main {
     public static void main(String[] args) {
         App app = new App();

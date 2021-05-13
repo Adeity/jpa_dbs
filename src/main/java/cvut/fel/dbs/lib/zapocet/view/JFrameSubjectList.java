@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * In this window you can see all the subjects in DB with their IDs, codes, names, description and recommended semester.
+ */
 public class JFrameSubjectList extends JFrame {
     App app;
 

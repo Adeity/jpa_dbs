@@ -2,6 +2,9 @@ package cvut.fel.dbs.lib.zapocet;
 
 import javax.persistence.*;
 
+/**
+ * Person is an entity with name, surname, phoneNumber, street, city and zipcode attribtes. Person can be teacher.
+ */
 @Entity
 @Table(name = "person")
 @Inheritance(strategy=InheritanceType.JOINED)

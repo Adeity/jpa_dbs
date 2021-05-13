@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * This is a windows with every teacher. For each teacher there is a subject that is taugth by that teacher. In this windows you can read and delete relationships.
+ */
 public class JFrameRelationshipList extends JFrame implements ActionListener {
     App app;
 

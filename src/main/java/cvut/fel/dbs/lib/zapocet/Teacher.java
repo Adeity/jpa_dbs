@@ -3,6 +3,9 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Teacher is a person that teaches.
+ */
 @Entity
 @Table(name = "teacher")
 @DiscriminatorValue("1")
@@ -31,6 +34,17 @@ public class Teacher extends Person {
         this.taughtSubjects = taughtSubjects;
     }
 
+    /**
+     * Returns new teacher instance with attributes
+     * @param pid pid of teacher
+     * @param name of teacher
+     * @param surname of teacher
+     * @param phonenumber of teacher
+     * @param street teacher is living on
+     * @param city teacher lives in
+     * @param zipcode teacher lives at
+     * @return new teacher instance
+     */
     protected static Teacher getNewTeacherInstance(String pid, String name, String surname, String phonenumber, String street, String city, String zipcode) {
         Integer zipcode1 = null;
         if (zipcode.length() != 0) {
@@ -40,6 +54,11 @@ public class Teacher extends Person {
         return newTeacher;
     }
 
+    /**
+     * Find teacher in DB by pid and returns it.
+     * @param pid of teacher
+     * @return teacher with pid
+     */
     protected static List<Teacher> getTeacherByPid(String pid, App app){
         Teacher t;
         TypedQuery<Teacher> q2 = app.em.createQuery(
@@ -49,6 +68,11 @@ public class Teacher extends Person {
         return q2.getResultList();
     }
 
+    /**
+     * Find teacher in DB by id and returns it.
+     * @param idperson of teacher
+     * @return teacher with idperson
+     */
     public static Teacher getTeacherById(String idperson, App app){
         TypedQuery<Teacher> q2 = app.em.createQuery(
                 "SELECT t FROM Teacher t WHERE t.idperson = " + idperson,
@@ -57,6 +81,10 @@ public class Teacher extends Person {
         return q2.getSingleResult();
     }
 
+    /**
+     * Finds all teachers in database
+     * @return list of all teachers in db
+     */
     public static List<Teacher> getListOfTeachers(App app) {
         TypedQuery<Teacher> q2 = app.em.createQuery(
                 "SELECT t FROM Teacher t WHERE t.person_type_id = 1",
@@ -65,18 +93,4 @@ public class Teacher extends Person {
         return q2.getResultList();
     }
 
-
-//    @Override
-//    public String toString() {
-//        return "Teacher{" +
-//                "idperson=" + idperson +
-//                ", pid='" + pid + '\'' +
-//                ", name='" + name + '\'' +
-//                ", surname='" + surname + '\'' +
-//                ", phoneNumber='" + phoneNumber + '\'' +
-//                ", street='" + street + '\'' +
-//                ", city='" + city + '\'' +
-//                ", zipcode=" + zipcode +
-//                '}';
-//    }
 }

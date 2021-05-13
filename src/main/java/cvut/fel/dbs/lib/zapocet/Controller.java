@@ -4,6 +4,9 @@ package cvut.fel.dbs.lib.zapocet;
 
 import java.util.List;
 
+/**
+ * Controller is controlled in view. It handles all CRUD operations.
+ */
 public class Controller {
     App app;
 
@@ -11,31 +14,36 @@ public class Controller {
         this.app = app;
     }
 
+    /**
+     * Deletes teacher from DB with id
+     * @param id of teacher
+     */
     public void deleteTeacherById(int id) {
         app.et.begin();
         app.em.createQuery("DELETE FROM Teacher WHERE idperson = " + id).executeUpdate();
         app.et.commit();
     }
 
+    /**
+     * Returns list of all teachers
+     * @return list of teachers in DB
+     */
     public List<Teacher> getListOfTeachers() {
         return Teacher.getListOfTeachers(app);
     }
 
+    /**
+     * Returns list of all subjects
+     * @return list of all subjects
+     */
     public List<Subject> getListOfSubjects() {
         return Subject.getListOfSubjects(app);
     }
 
-
-    public List<Subject> getListOfTaughtSubjectsByTeacher(String idperson) {
-        Teacher teacher = Teacher.getTeacherById(idperson, app);
-
-        for (Subject taughtSubject : teacher.getTaughtSubjects()) {
-            System.out.println(taughtSubject);
-        }
-
-        return null;
-    }
-
+    /**
+     * Validates user input and it is valid it creates new teacher in DB
+     * @return true if data was valid and teacher was created in db. false otherwise
+     */
     public boolean createNewTeacher(String pid, String name, String surname, String phonenumber, String street, String city, String zipcode) {
         if(!phoneAndZipAreValid(phonenumber, zipcode)) {
             return false;
@@ -57,6 +65,10 @@ public class Controller {
         return true;
     }
 
+    /**
+     * Checks wheter phone and zipcode are in valid format
+     * @return true if both are valid. false otherwise
+     */
     private boolean phoneAndZipAreValid(String phonenumber, String zipcode) {
         if (phonenumber.length() != 0) {
             if (phonenumber.length() != 9) {
@@ -73,6 +85,10 @@ public class Controller {
         return true;
     }
 
+    /**
+     * updates teachers parameters that is currently in DB
+     * @return true if input data were valid and teacher was updated
+     */
     public boolean updateTeacher(Teacher t, String pid, String name, String surname, String phonenumber, String street, String city, String zipcode) {
         if(!phoneAndZipAreValid(phonenumber, zipcode)) {
             return false;
@@ -95,6 +111,11 @@ public class Controller {
         return true;
     }
 
+    /**
+     * Deletes teachers taugth subject relationship.
+     * @param teacherId id of teacher
+     * @param subjectId id of subject to be deleted from the relationship
+     */
     public void deleteTeachersTaugthSubject(int teacherId, int subjectId) {
         Teacher t = app.em.find(Teacher.class, teacherId);
         System.out.println(t);
@@ -107,10 +128,18 @@ public class Controller {
         app.et.commit();
     }
 
+    /**
+     * Finds subject by its code
+     * @return subject found
+     */
     private Subject getSubjectByCode(String subjectCode) {
         return Subject.getSubjectByCode(app, subjectCode);
     }
 
+    /**
+     * Checks validity of input data and adds subject to teacher taught subject relationship
+     * @return true if subject was added to relationship. false otherwise.
+     */
     public boolean addTaugthSubjectToTeacher(Teacher t, String subjectCode) {
         if (subjectCode.length() != 10) {
             System.out.println("Subject code length is: " + subjectCode.length() + " code being: " + subjectCode);

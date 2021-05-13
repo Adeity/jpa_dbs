@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This is a windows with a form where new teacher can be created and added to DB.
+ */
 public class JFrameCreateTeacher extends JFrame implements ActionListener {
     App app;
 

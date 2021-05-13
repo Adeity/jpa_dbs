@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This windows has a form for selected teacher where you can update teachers attributes.
+ */
 public class JFrameUpdateTeacher extends JFrame implements ActionListener {
     App app;
 

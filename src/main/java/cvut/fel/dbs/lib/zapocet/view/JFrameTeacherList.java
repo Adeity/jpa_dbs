@@ -7,9 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * In this windows you can read each teacher in DB. You can also delete it from DB, update it. There are buttons to create new teacher and refresh this list.
+ */
 public class JFrameTeacherList extends JFrame implements ActionListener {
     App app;
 

@@ -8,6 +8,9 @@ import java.text.NumberFormat;
 
 import static java.lang.Character.isDigit;
 
+/**
+ * This ViewUtilities class makes it easier to work with GridBagLayout in Swing library.
+ */
 public class ViewUtilities {
     protected static JLabel addMyLabelCell(int pos, String labelstr, JPanel panel) {
         GridBagConstraints gridBagConstraints = new GridBagConstraints();

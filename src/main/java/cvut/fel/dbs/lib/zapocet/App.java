@@ -7,6 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+/**
+ * Application with controller, view and persistence components.
+ */
 public class App {
     Controller controller;
     EntityManagerFactory emf;

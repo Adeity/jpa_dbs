@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This is the first window you see when you open the application.
+ */
 public class JFrameInit extends JFrame implements ActionListener {
     App app;
 

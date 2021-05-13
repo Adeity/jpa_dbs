@@ -5,6 +5,9 @@ import cvut.fel.dbs.lib.zapocet.Teacher;
 
 import javax.swing.*;
 
+/**
+ * This is a router for every JFrame.
+ */
 public class View {
     App app;
 
