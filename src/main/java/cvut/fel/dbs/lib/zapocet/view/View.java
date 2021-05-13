@@ -14,6 +14,7 @@ public class View {
     JFrameTeacherList jFrameTeacherList;
     JFrameRelationshipList jFrameRelationshipList;
     JFrameSubjectList jFrameSubjectList;
+    JFrameAddTaughtSubject jFrameAddTaughtSubject;
 
     public void setApp(App app) {
         this.app = app;
@@ -94,6 +95,24 @@ public class View {
             jFrameUpdateTeacher.setVisible(true);
             jFrameUpdateTeacher.setCurrentTeacher(t);
             jFrameUpdateTeacher.repaint();
+        }
+    }
+
+    public void openJFrameAddTaugthSubject(Teacher t, App app) {
+        if (jFrameAddTaughtSubject == null) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    jFrameAddTaughtSubject = new JFrameAddTaughtSubject(t, app);
+                    jFrameAddTaughtSubject.init();
+                    jFrameAddTaughtSubject.setVisible(true);
+                }
+            });
+        }
+        else {
+            jFrameAddTaughtSubject.setVisible(true);
+            jFrameAddTaughtSubject.setCurrentTeacher(t);
+            jFrameAddTaughtSubject.repaint();
         }
     }
 

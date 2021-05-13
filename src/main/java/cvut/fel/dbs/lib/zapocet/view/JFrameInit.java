@@ -22,6 +22,7 @@ public class JFrameInit extends JFrame implements ActionListener {
     }
 
     public void init() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(new Dimension(500, 500));
         this.setActionCommands();
         panelInit = new JPanel();

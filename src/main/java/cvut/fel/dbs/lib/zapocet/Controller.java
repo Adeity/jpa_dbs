@@ -1,5 +1,7 @@
 package cvut.fel.dbs.lib.zapocet;
 
+
+
 import java.util.List;
 
 public class Controller {
@@ -103,5 +105,31 @@ public class Controller {
         app.et.begin();
         app.em.merge(t);
         app.et.commit();
+    }
+
+    private Subject getSubjectByCode(String subjectCode) {
+        return Subject.getSubjectByCode(app, subjectCode);
+    }
+
+    public boolean addTaugthSubjectToTeacher(Teacher t, String subjectCode) {
+        if (subjectCode.length() != 10) {
+            System.out.println("Subject code length is: " + subjectCode.length() + " code being: " + subjectCode);
+            return false;
+        }
+        Subject s = getSubjectByCode(subjectCode);
+        if (s == null) {
+            System.out.println("No subject with code " + subjectCode);
+            return false;
+        }
+        if (t.getTaughtSubjects().contains(s)) {
+            System.out.println("Teacher already teaches this subject");
+            return false;
+        }
+
+        t.getTaughtSubjects().add(s);
+        app.et.begin();
+        app.em.merge(t);
+        app.et.commit();
+        return true;
     }
 }

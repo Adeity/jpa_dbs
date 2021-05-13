@@ -51,6 +51,14 @@ public class Subject {
         return q2.getResultList();
     }
 
+    public static Subject getSubjectByCode(App app, String code) {
+        TypedQuery<Subject> q2 = app.em.createQuery(
+                "SELECT s FROM Subject s WHERE s.code = '" + code+"'",
+                Subject.class
+        );
+        return q2.getSingleResult();
+    }
+
     @Override
     public String toString() {
         return "Subject{" +

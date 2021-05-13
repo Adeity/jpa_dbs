@@ -92,10 +92,10 @@ public class JFrameRelationshipList extends JFrame implements ActionListener {
         String idPerson;
         String idSubject;
         switch (actionType){
-            case "update":
+            case "add":
                 idPerson = columns[1];
                 Teacher t = Teacher.getTeacherById(idPerson, app);
-                app.getView().openJFrameUpdateTeacher(t, app);
+                app.getView().openJFrameAddTaugthSubject(t, app);
                 break;
             case "delete":
                 idPerson = columns[1];
