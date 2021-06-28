@@ -1,7 +1,7 @@
 # jpa_dbs
 Semester project for ,,Database Systems" subject. Summer semester 2020/2021.
 
-This is a simple desktop application in Java with JPA access to a school database.
+This is a simple desktop application in Java with JPA access to a school PostgreSQL database.
 
 I created and annotated entities 'Teacher' and 'Subject' and a 'TeachesSubject' relationship between them. 
 
