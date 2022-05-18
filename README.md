@@ -1,5 +1,4 @@
 # jpa_dbs
-Semester project for ,,Database Systems" subject. Summer semester 2020/2021.
 
 This is a simple desktop application in Java with JPA access to a school PostgreSQL database.
 
